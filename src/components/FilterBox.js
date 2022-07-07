@@ -84,7 +84,7 @@ export default function FilterBox() {
           </div>
           <div className='form-group'>
             <label htmlFor='priceRange'>
-              Select maximum rent: {filters.rent}
+              Select maximum rent: {filters.rent}€
             </label>
             <div className='price-range' id='priceRange'>
               <input
@@ -104,7 +104,7 @@ export default function FilterBox() {
           </div>
           <div className='form-group'>
             <label htmlFor='priceRange'>
-              Select minimum area: {filters.area}
+              Select minimum area: {filters.area}m<sup>2</sup>
             </label>
             <div className='area-range' id='area'>
               <input
