@@ -10,7 +10,9 @@ export default function App() {
       <Navbar />
       <main className='mx-4 my-4'>
         <Routes>
-          <Route path='/details' element={<Details />} />
+          {/* <Route path='/details' element={<Details />} />
+          <Route path='/' element={<Home />} /> */}
+          <Route path='/details' element={<Temp />} />
           <Route path='/' element={<Home />} />
           <Route path='/properties' element={<Properties />} />
           <Route path='/temp' element={<Temp />} />
