@@ -5,6 +5,7 @@
   "description": "rent a property web app with filtering mechanism",
   "main": "index.js",
   "scripts": {
+          "build":"react-scripts build",
     "start": "react-scripts start"
   },
   "author": "",
