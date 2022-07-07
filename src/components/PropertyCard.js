@@ -57,7 +57,7 @@ export default function PropertyCard({ value: property }) {
 const Card = styled.div`
   .card {
     margin-bottom: 5rem;
-    width: 23rem;
+    width: 20rem;
     height: 29rem;
     overflow: hidden;
     cursor: pointer;

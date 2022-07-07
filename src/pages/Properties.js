@@ -6,22 +6,24 @@ import FilterBox from '../components/FilterBox';
 
 export default function Properties() {
   const { properties, filteredProperties } = useGlobalContext();
-  // console.log(properties);
+  console.log(properties);
   // console.log(filteredProperties);
 
   return (
     <>
       <Property>
-        <div className='filter'>
-          <FilterBox />
+        <div className='grid-container'>
+          <div className='filter'>
+            <FilterBox />
+          </div>
+          <div className='properties-container'>
+            {filteredProperties.map((property) => (
+              <div className='grid-item' key={property._id.$oid}>
+                <PropertyCard value={property} />
+              </div>
+            ))}
+          </div>
         </div>
-        {/* <div className='grid-container'>
-          {filteredProperties.map((property) => (
-            <div className='grid-item' key={property._id.$oid}>
-              <PropertyCard value={property} />
-            </div>
-          ))}
-        </div> */}
       </Property>
     </>
   );
@@ -30,13 +32,29 @@ export default function Properties() {
 const Property = styled.div`
   .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    grid-template-columns: 1fr 5fr;
+    overflow: hidden;
+  }
+  .filter-container {
+    height: 80vh;
+    background-color: #fff;
+  }
+  .properties-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     overflow: hidden;
   }
   .grid-item {
     margin: auto;
   }
 
+  @media (max-width: 1000px) {
+    .grid-container{
+    grid-template-columns: 100%;
+    }
+    .filter-container {
+      display:none;
+    }
   // @media (max-width: 1600px) {
   //   .grid-container {
   //     grid-template-columns: repeat(3, 1fr);

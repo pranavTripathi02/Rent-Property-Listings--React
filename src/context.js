@@ -11,10 +11,10 @@ export const AppProvider = ({ children }) => {
 
   const [filters, setFilters] = useState({
     city: [],
-    furnished: null,
-    pets: null,
-    f_rent: null,
-    f_area: null,
+    furnished: false,
+    pets: false,
+    rent: 0,
+    area: 0,
   });
 
   // const fetchProperties = async () => {
@@ -41,18 +41,32 @@ export const AppProvider = ({ children }) => {
   }, [filters]);
 
   const handleFilters = () => {
-    let newProperties = filteredProperties;
+    let newProperties = properties;
 
+    // console.log(filters.city.length);
     if (filters.city.length) {
-      newProperties = newProperties.filter((item) => {
-        // console.log('y', filters.city, item.city);
-        return filters.city.includes(item.city);
-      });
+      newProperties = newProperties.filter((item) =>
+        filters.city.includes(item.city)
+      );
     }
     if (filters.pets) {
-      newProperties = newProperties.filet((item) => item.pet === 'Yes');
+      newProperties = newProperties.filter((item) => item.pets === 'Yes');
+    }
+    if (filters.furnished) {
+      newProperties = newProperties.filter(
+        (item) => item.furnish === 'Furnished'
+      );
+    }
+    if (filters.rent > 0) {
+      newProperties = newProperties.filter((item) => item.rent <= filters.rent);
+    }
+    if (filters.area) {
+      newProperties = newProperties.filter(
+        (item) => item.areaSqm >= filters.area
+      );
     }
     setFilteredProperties(newProperties);
+    // console.log(newProperties);
   };
   // console.log(properties);
   // console.log(filteredProperties);
