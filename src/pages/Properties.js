@@ -47,12 +47,14 @@ export default function Properties() {
             ))}
           </div>
         </div>
-        <Pagination
-          paginate={paginate}
-          propertiesPerPage={propertiesPerPage}
-          totalProperties={filteredProperties.length}
-          currentPage={currentPage}
-        />
+        <div className='pagination-container'>
+          <Pagination
+            paginate={paginate}
+            propertiesPerPage={propertiesPerPage}
+            totalProperties={filteredProperties.length}
+            currentPage={currentPage}
+          />
+        </div>
       </Property>
     </>
   );
@@ -81,6 +83,7 @@ const Property = styled.div`
     .grid-container{
     grid-template-columns: 100%;
     }
+    .pagination-container,
     .filter-container {
       display:none;
     }
