@@ -20,6 +20,7 @@ export default function FilterBox() {
   });
   const minPrice = Math.min(...properties.map((item) => item.rent));
   const maxPrice = Math.max(...properties.map((item) => item.rent));
+  console.log(properties.filter((item) => item.rent === maxPrice));
   const minArea = Math.min(...properties.map((item) => item.areaSqm));
   const maxArea = Math.max(...properties.map((item) => item.areaSqm));
 

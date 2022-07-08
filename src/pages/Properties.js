@@ -1,12 +1,35 @@
 import React from 'react';
 import { useGlobalContext } from '../context';
-import { PropertyCard } from '../components';
+import { PropertyCard, Pagination } from '../components';
 import styled from 'styled-components';
 import FilterBox from '../components/FilterBox';
 
 export default function Properties() {
-  const { properties, filteredProperties } = useGlobalContext();
-  console.log(properties);
+  const {
+    properties,
+    filteredProperties,
+    currentPage,
+    propertiesPerPage,
+    setCurrentPage,
+  } = useGlobalContext();
+
+  const indexOfLastProperty = currentPage * propertiesPerPage;
+  const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
+  const currentProperties = filteredProperties.slice(
+    indexOfFirstProperty,
+    indexOfLastProperty
+  );
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  console.log(
+    currentPage,
+    indexOfFirstProperty,
+    indexOfLastProperty,
+    currentProperties,
+    propertiesPerPage
+  );
   // console.log(filteredProperties);
 
   return (
@@ -17,13 +40,19 @@ export default function Properties() {
             <FilterBox />
           </div>
           <div className='properties-container'>
-            {filteredProperties.map((property) => (
+            {currentProperties.map((property) => (
               <div className='grid-item' key={property._id.$oid}>
                 <PropertyCard value={property} />
               </div>
             ))}
           </div>
         </div>
+        <Pagination
+          paginate={paginate}
+          propertiesPerPage={propertiesPerPage}
+          totalProperties={filteredProperties.length}
+          currentPage={currentPage}
+        />
       </Property>
     </>
   );
@@ -36,7 +65,7 @@ const Property = styled.div`
     overflow: hidden;
   }
   .filter-container {
-    height: 80vh;
+    height: 90vh;
     background-color: #fff;
   }
   .properties-container {

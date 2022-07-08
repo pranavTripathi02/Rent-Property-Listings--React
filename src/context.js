@@ -6,6 +6,8 @@ const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [properties, setProperties] = useState(data);
+  const [currentPage, setCurrentPage] = useState(1);
+  const propertiesPerPage = 20;
 
   const [filteredProperties, setFilteredProperties] = useState(data);
 
@@ -73,7 +75,15 @@ export const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ properties, filters, setFilters, filteredProperties }}
+      value={{
+        properties,
+        filters,
+        setFilters,
+        filteredProperties,
+        propertiesPerPage,
+        currentPage,
+        setCurrentPage,
+      }}
     >
       {children}
     </AppContext.Provider>
